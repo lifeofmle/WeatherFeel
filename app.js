@@ -8,7 +8,7 @@ Ext.Loader.setPath({
 Ext.application({
     name: 'WeatherFeel',
 
-    requires: ['Ext.MessageBox','Ext.List', 'Ext.carousel.Carousel'],
+    requires: ['Ext.MessageBox','Ext.List','Ext.Panel', 'Ext.carousel.Carousel'],
 
     controllers: ['WeatherController'],
     models: ['City'],
@@ -33,6 +33,10 @@ Ext.application({
         '1496x2048': 'resources/startup/1496x2048.png'
     },
 
+    viewport : {
+        autoMaximize : true
+    },
+
     launch: function() {
         console.log('App launched');
 
@@ -45,26 +49,37 @@ Ext.application({
             direction: 'horizontal'
         });
 
-        Ext.Viewport.add(carousel);
-
         // Create main list at start
-        var list = Ext.create('Ext.List',{
-            store: 'Cities',
-            itemTpl: '{name}, {area}',
-            store: 'Cities',
-            scrollable: true,
-            listeners:{
-                itemtap: function(item, index){
-                    console.log('tapped'+ index);
-                    carousel.setActiveItem(index+1);
+        var mainPanel = Ext.create('Ext.Panel',{
+            fullscreen: true,
+            layout: 'fit',
+            items:[
+                {
+                    xtype: 'toolbar',
+                    title: 'WeatherFeel',
+                    docked: 'top'
+                },
+                {
+                    xtype: 'list',
+                    store: 'Cities',
+                    itemTpl: '{name}',
+                    store: 'Cities',
+                    scrollable: true,
+                    listeners:{
+                        itemtap: function(item, index){
+                            carousel.setActiveItem(index+1);
+                        }
+                    }
                 }
-            }
+            ]
         });
+
+        Ext.Viewport.add(carousel);
 
         Ext.getStore('Cities').load(function(cities) {
             var items = [];
 
-            items.push(list);
+            items.push(mainPanel);
 
             Ext.each(cities, function(city) {
                 items.push({

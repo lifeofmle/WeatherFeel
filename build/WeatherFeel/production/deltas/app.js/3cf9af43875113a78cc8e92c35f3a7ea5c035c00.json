@@ -1,0 +1,1 @@
+["/*0b57023ba63294d7e1cad9470a8da9534a083eee",42,510214,"layout:\"vbox\"",510255,601,"Panel",510849,575,"viewport:{autoMaximize:true",511422,162,"var a=Ext.create(\"Ext.Panel\",{fullscreen:true,layout:\"fit\",items:[{xtype:\"toolbar\",title:\"WeatherFeel\",docked:\"top\"},{xtype:\"list\",",511633,104,"b.setActiveItem(c+1)}}}]});Ext.Viewport.add(b",511784,363]
