@@ -10,7 +10,7 @@ Ext.define('WeatherFeel.controller.WeatherController', {
                 autoCreate: true
             }
         },
-        
+
         control: {
             mainView: {
                 openSettingsCommand: "onSettingsCommand"

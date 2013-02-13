@@ -7,21 +7,12 @@ Ext.define('WeatherFeel.view.Main', {
     ],
     config:{
         fullscreen: true,
-        navigationBar: {
-            items: [
-                {
-                    itemId: "btnSettings",
-                    xtype: 'button',
-                    iconCls: 'settings',
-                    iconMask: true,
-                    align: 'right',
-                    ui: 'action'
-                }
-            ]
+        navigationBar:{
+          hidden: true
         },
         items:
           {
-              xtype: "weatherView"
+              xtype: "settingsView"
           },
       listeners: [{
           delegate: "#btnSettings",

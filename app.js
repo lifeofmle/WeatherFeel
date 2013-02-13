@@ -8,10 +8,12 @@ Ext.Loader.setPath({
 Ext.application({
     name: 'WeatherFeel',
 
-    requires: ['Ext.MessageBox'],
+    requires: ['Ext.MessageBox','Ext.List', 'Ext.carousel.Carousel'],
 
     controllers: ['WeatherController'],
-    views: ['Main','Settings'],
+    models: ['City'],
+    stores: ['Cities'],
+    views: ['Main','Weather'],
 
     icon: {
         '57': 'resources/icons/Icon.png',
@@ -37,11 +39,44 @@ Ext.application({
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
 
-        var mainView = {
-            xtype: "mainView"
-        };
+        // Create carousel
+        var carousel = Ext.create('Ext.Carousel', {
+            store: 'Cities',
+            direction: 'horizontal'
+        });
 
-        Ext.Viewport.add(mainView);
+        Ext.Viewport.add(carousel);
+
+        // Create main list at start
+        var list = Ext.create('Ext.List',{
+            store: 'Cities',
+            itemTpl: '{name}, {area}',
+            store: 'Cities',
+            scrollable: true,
+            listeners:{
+                itemtap: function(item, index){
+                    console.log('tapped'+ index);
+                    carousel.setActiveItem(index+1);
+                }
+            }
+        });
+
+        Ext.getStore('Cities').load(function(cities) {
+            var items = [];
+
+            items.push(list);
+
+            Ext.each(cities, function(city) {
+                items.push({
+                    xtype: 'weatherView',
+                    city: city
+                });
+            });
+
+            carousel.setItems(items);
+
+            carousel.setActiveItem(0);
+        });
     },
 
     onUpdated: function() {

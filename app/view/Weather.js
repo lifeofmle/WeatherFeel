@@ -1,34 +1,40 @@
 Ext.define('WeatherFeel.view.Weather', {
     extend: 'Ext.Panel',
-    id: 'weather',
     xtype: 'weatherView',
-    requires: ['Ext.Carousel'],
+    requires:['Ext.data.proxy.JsonP'],
     config: {
-        layout: 'vbox', //defines layout inside config
-        items: [
-            {
-                xtype: 'carousel',
-                flex: 1,
-                items: [
-                    {
-                        xtype: 'panel',
-                        html: 'Toronto'
-                    },
-                    {
-                        xtype: 'panel',
-                        html: 'New York'
-                    },
-                    {
-                        xtype: 'container',
-                        html: 'London'
-                    },
-                    {
-                        xtype: 'panel',
-                        html: 'Sydney'
-                    }
-                ]
-            }
-        ]
+        city: null
+    },
 
+
+    updateCity: function(city) {
+        this.onPopulateCity(city);
+    },
+
+    onPopulateCity: function(city){
+
+        var cityName = city.get('name');
+        var area = city.get('area');
+
+//        Ext.util.JSONP.request({
+//            url: 'http://api.wunderground.com/api/98eae93fbe9acf44/conditions/q/'+ area +'/'+ cityName +'.json',
+//            callbackKey: 'callback',
+//            scope: this,
+//            callback: function(successful, data) {
+//                console.log( data );
+//            }
+//        });
+
+        // This is temporarily because this won't work in March 2013
+//        Ext.util.JSONP.request({
+//            url: 'https://search.twitter.com/search.json?q=Weather%20'+ cityName,
+//            callbackKey: 'callback',
+//            scope: this,
+//            callback: function(successful, data) {
+//                console.log(data);
+//            }
+//        });
+
+        this.setHtml(city.get('name'));
     }
 });

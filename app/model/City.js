@@ -1,6 +1,6 @@
-Ext.define('Sencha.model.City', {
+Ext.define('WeatherFeel.model.City', {
     extend: 'Ext.data.Model',
     config: {
-        fields: ['name', 'local_epoch']
+        fields: ['name', 'area', 'local_epoch']
     }
 });
