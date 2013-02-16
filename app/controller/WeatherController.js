@@ -84,14 +84,14 @@ Ext.define('WeatherFeel.controller.WeatherController', {
                                 var feelsLikeLabel = currentPanel.getComponent('feelsLikePanel').getComponent('feelsLikeLabel');
                                 if (feelsLikeLabel)
                                 {
-                                    feelsLikeLabel.setHtml('<p>'+ feelsLikeTemp +'&#176;C</p>');
+                                    feelsLikeLabel.setHtml('<p style="font-size: xx-large; margin-left: 10px">'+ feelsLikeTemp +'&#176;C</p>');
                                 }
 
                                 // Now - POP
                                 var popLabel = currentPanel.getComponent('popPanel').getComponent('popLabel');
                                 if (popLabel)
                                 {
-                                    popLabel.setHtml(popValue);
+                                    popLabel.setHtml('<p style="font-size: xx-large">'+ popValue +'</p>');
                                 }
                             }
 

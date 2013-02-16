@@ -32,13 +32,15 @@
       <file leaf-file-name="WeatherController.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controller/WeatherController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="177" column="0" selection-start="7249" selection-end="7249" vertical-scroll-proportion="0.17910448">
+            <state line="86" column="108" selection-start="3802" selection-end="3802" vertical-scroll-proportion="0.3034826">
               <folding>
-                <marker date="1360987105000" expanded="true" signature="2786:2838" placeholder="..." />
-                <marker date="1360987105000" expanded="true" signature="2852:2900" placeholder="..." />
-                <marker date="1360987105000" expanded="true" signature="8097:8117" placeholder="..." />
-                <marker date="1360987105000" expanded="true" signature="8097:8133" placeholder="..." />
-                <marker date="1360987105000" expanded="true" signature="8162:8232" placeholder="..." />
+                <marker date="1360987791000" expanded="true" signature="2786:2838" placeholder="..." />
+                <marker date="1360987791000" expanded="true" signature="2852:2900" placeholder="..." />
+                <marker date="1360987791000" expanded="true" signature="3764:3798" placeholder="..." />
+                <marker date="1360987791000" expanded="true" signature="4173:4192" placeholder="..." />
+                <marker date="1360987791000" expanded="true" signature="8187:8207" placeholder="..." />
+                <marker date="1360987791000" expanded="true" signature="8187:8223" placeholder="..." />
+                <marker date="1360987791000" expanded="true" signature="8252:8322" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -47,12 +49,13 @@
       <file leaf-file-name="Weather.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/view/Weather.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="42" selection-start="860" selection-end="860" vertical-scroll-proportion="0.0">
+            <state line="124" column="96" selection-start="4908" selection-end="4908" vertical-scroll-proportion="0.0">
               <folding>
-                <marker date="1360986690000" expanded="true" signature="1286:1333" placeholder="..." />
-                <element signature="e#3202#5994#0" expanded="false" />
-                <element signature="e#3809#5329#0" expanded="false" />
-                <marker date="1360986690000" expanded="true" signature="10679:10690" placeholder="..." />
+                <marker date="1360987756000" expanded="true" signature="1286:1333" placeholder="..." />
+                <marker date="1360987756000" expanded="true" signature="4077:4107" placeholder="..." />
+                <marker date="1360987756000" expanded="true" signature="4869:4899" placeholder="..." />
+                <marker date="1360987756000" expanded="true" signature="5679:5709" placeholder="..." />
+                <marker date="1360987756000" expanded="true" signature="10817:10828" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -464,25 +467,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/view/Weather.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="42" selection-start="860" selection-end="860" vertical-scroll-proportion="0.0">
+        <state line="124" column="96" selection-start="4908" selection-end="4908" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1360986690000" expanded="true" signature="1286:1333" placeholder="..." />
-            <element signature="e#3202#5994#0" expanded="false" />
-            <element signature="e#3809#5329#0" expanded="false" />
-            <marker date="1360986690000" expanded="true" signature="10679:10690" placeholder="..." />
+            <marker date="1360987756000" expanded="true" signature="1286:1333" placeholder="..." />
+            <marker date="1360987756000" expanded="true" signature="4077:4107" placeholder="..." />
+            <marker date="1360987756000" expanded="true" signature="4869:4899" placeholder="..." />
+            <marker date="1360987756000" expanded="true" signature="5679:5709" placeholder="..." />
+            <marker date="1360987756000" expanded="true" signature="10817:10828" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/WeatherController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="177" column="0" selection-start="7249" selection-end="7249" vertical-scroll-proportion="0.17910448">
+        <state line="86" column="108" selection-start="3802" selection-end="3802" vertical-scroll-proportion="0.3034826">
           <folding>
-            <marker date="1360987105000" expanded="true" signature="2786:2838" placeholder="..." />
-            <marker date="1360987105000" expanded="true" signature="2852:2900" placeholder="..." />
-            <marker date="1360987105000" expanded="true" signature="8097:8117" placeholder="..." />
-            <marker date="1360987105000" expanded="true" signature="8097:8133" placeholder="..." />
-            <marker date="1360987105000" expanded="true" signature="8162:8232" placeholder="..." />
+            <marker date="1360987791000" expanded="true" signature="2786:2838" placeholder="..." />
+            <marker date="1360987791000" expanded="true" signature="2852:2900" placeholder="..." />
+            <marker date="1360987791000" expanded="true" signature="3764:3798" placeholder="..." />
+            <marker date="1360987791000" expanded="true" signature="4173:4192" placeholder="..." />
+            <marker date="1360987791000" expanded="true" signature="8187:8207" placeholder="..." />
+            <marker date="1360987791000" expanded="true" signature="8187:8223" placeholder="..." />
+            <marker date="1360987791000" expanded="true" signature="8252:8322" placeholder="..." />
           </folding>
         </state>
       </provider>

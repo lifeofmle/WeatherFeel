@@ -108,7 +108,7 @@ Ext.define('WeatherFeel.view.Weather', {
                                         itemId: 'feelsLikePanel',
                                         xtype: 'panel',
                                         flex: 1,
-                                        html: 'Feels Like',
+                                        html: '<p style="color: #2F6284; font: x-large;">Feels Like</p>',
                                         items: [
                                             {
                                                 itemId: 'feelsLikeLabel',
@@ -122,7 +122,7 @@ Ext.define('WeatherFeel.view.Weather', {
                                         itemId: 'popPanel',
                                         xtype: 'panel',
                                         flex: 1,
-                                        html: 'POP',
+                                        html: '<p style="color: #2F6284; font: x-large;">POP</p>',
                                         items: [
                                             {
                                                 itemId: 'popLabel',
@@ -138,7 +138,7 @@ Ext.define('WeatherFeel.view.Weather', {
                                 itemId: 'yesterdayPanel',
                                 xtype: 'panel',
                                 flex: 2,
-                                html: 'Yesterday',
+                                html: '<p style="color: #2F6284; font: x-large;">Yesterday</p>',
                                 items: [
                                     {
                                         itemId: 'yesterdayLabel',
