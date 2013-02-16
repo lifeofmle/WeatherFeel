@@ -8,11 +8,24 @@ Ext.Loader.setPath({
 Ext.application({
     name: 'WeatherFeel',
 
-    requires: ['Ext.MessageBox','Ext.List','Ext.Panel', 'Ext.carousel.Carousel'],
-
+    requires: [
+        'Ext.MessageBox',
+        'Ext.List',
+        'Ext.Img',
+        'Ext.Panel',
+        'Ext.Label',
+        'Ext.carousel.Carousel',
+        'Ext.data.proxy.JsonP',
+        'Ext.tab.Panel',
+        'Ext.chart.CartesianChart',
+        'Ext.chart.axis.Category',
+        'Ext.chart.axis.Numeric',
+        'Ext.chart.series.Line',
+        'Ext.chart.interactions.PanZoom'
+    ],
     controllers: ['WeatherController'],
-    models: ['City'],
-    stores: ['Cities'],
+    models: ['City', 'Forecast', 'Hourly'],
+    stores: ['Cities', 'Forecast', 'Hourly'],
     views: ['Main','Weather'],
 
     icon: {
@@ -52,46 +65,83 @@ Ext.application({
         // Create main list at start
         var mainPanel = Ext.create('Ext.Panel',{
             fullscreen: true,
-            layout: 'fit',
+            layout: 'vbox',
             items:[
                 {
                     xtype: 'toolbar',
                     title: 'WeatherFeel',
-                    docked: 'top'
+                    docked: 'top',
+                    items: [
+                        {
+                            xtype: 'spacer'
+                        },
+                        {
+                            id: 'refresh-btn',
+                            xtype: 'button',
+                            iconCls: 'refresh',
+                            iconMask: true,
+                            text: '',
+                            listeners:{
+                                tap: function(){
+                                    console.log('Tapped refresh...');
+                                    this.fireEvent("updateWeatherCommand", this);
+                                }
+                            }
+                        }
+                    ]
                 },
                 {
-                    xtype: 'list',
-                    store: 'Cities',
-                    itemTpl: '{name}',
-                    store: 'Cities',
-                    scrollable: true,
-                    listeners:{
-                        itemtap: function(item, index){
-                            carousel.setActiveItem(index+1);
+                    xtype: 'container',
+                    title: 'Future',
+                    flex: 1,
+                    layout: {
+                        type: 'fit'
+                    },
+                    items: [
+                        {
+                            xtype: 'list',
+                            store: Ext.getStore('Cities').load(),
+                            itemTpl: '{name}',
+                            scrollable: false,
+                            flex: 1,
+                            style: 'background-color: white',
+                            listeners:{
+                                itemtap: function(item, index){
+                                    carousel.setActiveItem(index+1);
+                                }
+                            }
+                        },
+                        {
+                            xtype: 'image',
+                            height: 30,
+                            docked: 'bottom',
+                            margin: '0 0 30 0',
+                            style: 'background-color: white',
+                            src: 'resources/images/wunderground.png'
                         }
-                    }
+                    ]
                 }
             ]
         });
 
         Ext.Viewport.add(carousel);
 
+        var items = [];
+        items.push(mainPanel);
+
         Ext.getStore('Cities').load(function(cities) {
-            var items = [];
-
-            items.push(mainPanel);
-
             Ext.each(cities, function(city) {
                 items.push({
                     xtype: 'weatherView',
+                    itemId: 'weatherViewId',
                     city: city
                 });
             });
-
-            carousel.setItems(items);
-
-            carousel.setActiveItem(0);
         });
+
+        carousel.setItems(items);
+
+        carousel.setActiveItem(0);
     },
 
     onUpdated: function() {

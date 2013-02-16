@@ -1,6 +1,6 @@
 Ext.define('WeatherFeel.view.Main', {
     extend: "Ext.navigation.View",
-    xtype: "mainView",
+    xtype: "mainView2",
     requires: [
         'WeatherFeel.view.Weather',
         'WeatherFeel.view.Settings'

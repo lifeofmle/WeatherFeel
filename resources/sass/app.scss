@@ -17,3 +17,49 @@
 @include sencha-msgbox;
 
 // Your custom code goes here...
+.dayPanelBackground-london {
+  background: url('../../resources/images/london_day.jpg')  no-repeat center;
+  background-size: 100% 100%;
+}
+.nightPanelBackground-london {
+  background: url('../../resources/images/london_night.jpg')  no-repeat center;
+  background-size: 100% 100%;
+}
+.dayPanelBackground-san_francisco {
+  background: url('../../resources/images/sanfran_day.jpg')  no-repeat center;
+  background-size: 100% 100%;
+}
+.nightPanelBackground-san_francisco {
+  background: url('../../resources/images/sanfran_night.jpg')  no-repeat center;
+  background-size: 100% 100%;
+}
+.dayPanelBackground-new_york {
+  background: url('../../resources/images/newyork_day.jpg')  no-repeat center;
+  background-size: 100% 100%;
+}
+.nightPanelBackground-new_york {
+  background: url('../../resources/images/newyork_night.jpg')  no-repeat center;
+  background-size: 100% 100%;
+}
+.dayPanelBackground-toronto {
+  background: url('../../resources/images/toronto_day.jpg')  no-repeat center;
+  background-size: 100% 100%;
+}
+.nightPanelBackground-toronto {
+  background: url('../../resources/images/toronto_night.jpg')  no-repeat center;
+  background-size: 100% 100%;
+}
+.dayPanelBackground-sydney {
+  background: url('../../resources/images/sydney_day.jpg')  no-repeat center;
+  background-size: 100% 100%;
+}
+.nightPanelBackground-sydney {
+  background: url('../../resources/images/sydney_night.jpg')  no-repeat center;
+  background-size: 100% 100%;
+}
+
+.cityTitle {
+  color: #FFF;
+  font-size:14px;
+  font-weight: bold;
+}

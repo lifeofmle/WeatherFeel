@@ -1,31 +1,95 @@
 Ext.define('WeatherFeel.view.Weather', {
     extend: 'Ext.Container',
     xtype: 'weatherView',
-    requires:[
-        'Ext.data.proxy.JsonP',
-        'Ext.tab.Panel',
-        'Ext.chart.CartesianChart',
-        'Ext.chart.axis.Category',
-        'Ext.chart.axis.Numeric',
-        'Ext.chart.series.Line',
-        'Ext.chart.interactions.PanZoom'
-    ],
     config: {
         city: null,
+        localTime: null,
+        cityName: null,
+        currentTemp: null,
+        currentFeelsLikeTemp: null,
+        currentPop: null,
+        currentWeatherIcon: null,
+        yesterdayHighTemp: null,
+        yesterdayLowTemp: null,
+        yesterdayAtTimeTemp: null,
+        yesterdayAtTimeCond: null,
         layout: {
             type: 'vbox'
-        },
-        items: [
+        }
+    },
+
+    initialize: function(){
+        this.callParent(arguments);
+
+        this.add([
             {
-                name: 'topPanel',
-                xtype: 'panel',
-                flex: 1
+                itemId: 'topPanel',
+                xtype: 'container',
+                flex: 1,
+                layout: {
+                    type: 'vbox'
+                },
+                items: [
+                    {
+                        itemId: 'topArea',
+                        xtype: 'panel',
+                        flex: 1,
+                        layout: {
+                            type: 'vbox'
+                        },
+                        items: [
+                            {
+                                xtype: 'panel',
+                                flex: 1,
+                                cls: 'cityTitle',
+                               html: '<p style="color: #FFFFFF; font-size: xx-large; margin:5px">'+ this.cityName +'</p>'
+                            },
+                            {
+                                itemId: 'localTimePanel',
+                                xtype: 'panel',
+                                flex: 1
+                            },
+                            {
+                                itemId: 'currentWeatherPanel',
+                                xtype: 'container',
+                                flex: 3,
+                                layout: {
+                                    type: 'hbox'
+                                },
+                                items: [
+                                    {
+                                        itemId: 'weatherIconPanel',
+                                        xtype: 'image',
+
+                                        flex: 1
+                                    },
+
+                                    {
+                                        itemId: 'weatherTempPanel',
+                                        xtype: 'panel',
+                                        flex: 1,
+                                        items:[
+                                            {
+                                                itemId: 'weatherTempLabel',
+                                                xtype: 'label',
+                                                centered: true,
+                                                html: '6°C'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
             },
             {
+                itemId: 'bottomPanel',
                 xtype: 'tabpanel',
                 flex: 1.5,
                 items: [
                     {
+                        itemId: 'nowPanel',
                         xtype: 'container',
                         title: 'Now',
                         layout: {
@@ -33,19 +97,60 @@ Ext.define('WeatherFeel.view.Weather', {
                         },
                         items: [
                             {
-                                xtype: 'panel',
+                                itemId: 'currentPanel',
+                                xtype: 'container',
                                 flex: 1,
-                                html: 'Feels like'
+                                layout: {
+                                    type: 'hbox'
+                                },
+                                items: [
+                                    {
+                                        itemId: 'feelsLikePanel',
+                                        xtype: 'panel',
+                                        flex: 1,
+                                        html: 'Feels Like',
+                                        items: [
+                                            {
+                                                itemId: 'feelsLikeLabel',
+                                                xtype: 'label',
+                                                centered: true,
+                                                html: '6C'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        itemId: 'popPanel',
+                                        xtype: 'panel',
+                                        flex: 1,
+                                        html: 'POP',
+                                        items: [
+                                            {
+                                                itemId: 'popLabel',
+                                                xtype: 'label',
+                                                centered: true,
+                                                html: '10%'
+                                            }
+                                        ]
+                                    }
+                                ]
                             },
                             {
+                                itemId: 'yesterdayPanel',
                                 xtype: 'panel',
-                                flex: 1,
-                                border: 1,
-                                html: 'Yesterday'
+                                flex: 2,
+                                html: 'Yesterday',
+                                items: [
+                                    {
+                                        itemId: 'yesterdayLabel',
+                                        xtype: 'label',
+                                        centered: true
+                                    }
+                                ]
                             }
                         ]
                     },
                     {
+                        itemId: 'laterPanel',
                         xtype: 'container',
                         title: 'Later',
                         layout: {
@@ -53,27 +158,17 @@ Ext.define('WeatherFeel.view.Weather', {
                         },
                         items: [
                             {
+                                itemId: 'hourlyChart',
                                 xtype: 'chart',
                                 flex: 1,
-                                margin: 5,
-                                store: {
-                                    fields: ['hour', 'temp'],
-                                    data: [
-                                        { hour: '8am', temp: 2},
-                                        { hour: '9am', temp: 1},
-                                        { hour: '10am', temp: 3},
-                                        { hour: '11am', temp: 4},
-                                        { hour: '12pm', temp: 5},
-                                        { hour: '1pm', temp: 5},
-                                        { hour: '2pm', temp: 6},
-                                        { hour: '3pm', temp: 5},
-                                        { hour: '4pm', temp: 4},
-                                        { hour: '5pm', temp: 3},
-                                        { hour: '6pm', temp: 2},
-                                        { hour: '7pm', temp: 2}
-                                    ]
+                                margin: '0 0 12 0',
+                                innerPadding: {
+                                    top: 2,
+                                    left: 5,
+                                    right: 5,
+                                    bottom: 5
                                 },
-
+                                store: Ext.getStore("Hourly"),
                                 series: [
                                     {
                                         type: 'line',
@@ -81,8 +176,23 @@ Ext.define('WeatherFeel.view.Weather', {
                                             stroke: 'rgb(0,0,200)',
                                             lineWidth: 2
                                         },
+                                        marker: {
+                                            type: 'circle',
+                                            stroke: '#0d1f96',
+                                            fill: '#115fa6',
+                                            lineWidth: 2,
+                                            radius: 4,
+                                            shadowColor: 'rgba(0,0,0,0.7)',
+                                            shadowBlur: 10,
+                                            shadowOffsetX: 3,
+                                            shadowOffsetY: 3,
+                                            fx: {
+                                                duration: 300
+                                            }
+                                        },
                                         xField: 'hour',
-                                        yField: 'temp'
+                                        yField: 'temp',
+                                        labelField: 'temp'
                                     }
                                 ],
                                 axes: [
@@ -121,6 +231,7 @@ Ext.define('WeatherFeel.view.Weather', {
                         ]
                     },
                     {
+                        itemId: 'futurePanel',
                         xtype: 'container',
                         title: 'Future',
                         layout: {
@@ -128,10 +239,16 @@ Ext.define('WeatherFeel.view.Weather', {
                         },
                         items: [
                             {
+                                itemId: 'forecastList',
                                 xtype: 'list',
                                 flex: 1,
+                                emptyText: 'Forecast not loaded',
+                                store: { fields: ['day', 'low', 'high', 'description'] },
+                                scrollable: true,
                                 itemTpl: [
-                                    '<div>List Item {string}</div>'
+                                    '<div>{day} <span style=\'float:right\'>Low:{low}&#176;C High:{high}&#176;C</span><br/>' +
+                                        '{description}' +
+                                        '</div>'
                                 ]
                             }
                         ]
@@ -146,28 +263,23 @@ Ext.define('WeatherFeel.view.Weather', {
                     }
                 }
             }
-        ]
+        ]);
+
     },
 
     updateCity: function(city) {
         this.onPopulateCity(city);
     },
 
+    updateLocalTime: function(localTime){
+        this.localTime = localTime;
+    },
+
     onPopulateCity: function(city){
         var cityName = city.get('name');
         var area = city.get('area');
 
-        this.setHtml(cityName);
-
-        this.onUpdateClock(city);
-        this.onUpdateWeather(city);
-    },
-
-    onUpdateClock: function(city){
-        // Calculate the time based on the timezone
-
-        // Refresh clock every second
-        setTimeout(this.onUpdateClock, 1000);
+        this.cityName = cityName;
     },
 
     onUpdateWeather: function(city){
@@ -184,27 +296,7 @@ Ext.define('WeatherFeel.view.Weather', {
         if (city)
             this.onUpdateNow(city);
 
-        // TODO: Update with hourly stats
-        if (city)
-            this.onUpdateLater(city);
-
-        // TODO: Update with 5-day forecast
-        if (city)
-            this.onUpdateFuture(city);
-
         // Refresh weather info every hour
         setTimeout(this.onUpdateWeather, 3600000);
-    },
-
-    onUpdateNow: function(){
-
-    },
-
-    onUpdateLater: function(data){
-
-    },
-
-    onUpdateFuture: function(data){
-
     }
 });
